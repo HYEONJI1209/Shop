@@ -1,9 +1,17 @@
 import React from "react";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+} from "react-router-dom";
+import {Register} from "./index";
 
 const MainRoute = () => {
-    return(
+    return (
         <div>
-            a
+            <Routes>
+                <Route path="/register" element={<Register />} />
+            </Routes>
         </div>
     )
 }
