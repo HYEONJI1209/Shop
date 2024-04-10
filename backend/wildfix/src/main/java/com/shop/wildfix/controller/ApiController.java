@@ -44,3 +44,4 @@ public class ApiController {
         return ResponseEntity.ok().body("User registered successfully");
     }
 }
+
