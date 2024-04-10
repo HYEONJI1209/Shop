@@ -1,25 +1,44 @@
-import React, { useState } from "react";
-import { RegisterServices } from "../../services/Login/RegiServices";
+import React, { useState, useEffect } from "react";
+import { RegisterServices, GetRegisterServices } from "../../services/Login/RegiServices";
 
-const Register = () => {
+interface UserData {
+    username: string;
+    email: string;
+}
+
+const Register: React.FC = () => {
     const [formData, setFormData] = useState({
         username: "",
         email: "",
         password: ""
     });
+    const [registeredData, setRegisteredData] = useState<UserData[]>([]);
 
-    const handleChange = (e:any) => {
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await GetRegisterServices();
+                setRegisteredData(response.data);
+            } catch (error) {
+                console.error("데이터 가져오기 실패:", error);
+            }
+        }
+        fetchData();
+    }, []);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e:any) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await RegisterServices(formData); // 데이터를 서비스로 보냄
-            // 성공적으로 등록되었을 때 수행할 동작 추가
+            await RegisterServices(formData);
             console.log("등록 성공!");
+            // 성공적으로 등록된 데이터 가져오기
+            const response = await GetRegisterServices();
+            setRegisteredData(response.data);
         } catch (error) {
-            // 등록 실패 시 수행할 동작 추가
             console.error("등록 실패:", error);
         }
     };
@@ -42,6 +61,15 @@ const Register = () => {
                 </div>
                 <button type="submit">가입</button>
             </form>
+
+            <div>
+                <h2>회원가입된 기록</h2>
+                <ul>
+                    {registeredData.map((data, index) => (
+                        <li key={index}>{data.username} - {data.email}</li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 };
