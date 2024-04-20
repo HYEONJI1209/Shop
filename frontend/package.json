@@ -13,10 +13,7 @@
     "axios": "^1.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "react-responsive-carousel": "^3.2.23",
-=======
->>>>>>> 6a54f524831f9b4c1275c1134efe2649e46dcbe9
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
     "sass": "^1.72.0",
@@ -47,12 +44,8 @@
       "last 1 safari version"
     ]
   },
-<<<<<<< HEAD
-  "devDependencies": {}
-=======
   "proxy": "http://localhost:9090",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
->>>>>>> 6a54f524831f9b4c1275c1134efe2649e46dcbe9
 }
