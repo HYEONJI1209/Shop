@@ -1,0 +1,184 @@
+.MainPage {
+
+    .Slider {
+        .SliderBox {
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .Section2 {
+        padding: 62px 120px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .TwoLeft {
+            gap: 45px;
+            display: flex;
+
+            .image-container {
+                position: relative;
+
+                .image-text {
+                    position: absolute;
+                    bottom: -0px;
+                    left: 50%;
+                    transform: translate(-50%, -0%);
+                    transition: opacity 0.3s ease;
+                    color: #fff;
+                    font-size: 30px;
+                    background-color: #898989;
+                    width: 100%;
+                    text-align: center;
+                    padding-top: 27px;
+                    padding-bottom: 20px;
+
+                    .ImageMenuText {
+                        font-size: 10px;
+                        color: #EDEDED;
+                    }
+
+                    .ImageText {
+                        font-size: 15px;
+                        margin-top: 15px;
+                        margin-bottom: 15px;
+                    }
+
+                    .ImagePointText {
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+
+        .TwoRight {
+            width: 40%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            flex-direction: column;
+
+            .Best {
+                font-size: 40px;
+            }
+
+            .GoodsName {
+                margin-top: 54px;
+                margin-bottom: 54px;
+                font-size: 36px;
+            }
+
+            .Explan {
+                width: 500px;
+                text-align: center;
+                font-size: 15px;
+                margin-bottom: 100px;
+                color: #808080;
+            }
+
+            button {
+                background-color: #25414C;
+                padding: 5px 23px;
+                color: #C1C1C1;
+                border: none;
+                cursor: pointer;
+            }
+        }
+
+        .ThreeRight {
+            width: 40%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+
+            .GoodsName {
+                margin-top: 54px;
+                margin-bottom: 54px;
+                font-size: 36px;
+            }
+
+            .Explan {
+                width: 500px;
+                text-align: center;
+                font-size: 15px;
+                margin-bottom: 100px;
+                color: #808080;
+            }
+
+            button {
+                background-color: #25414C;
+                padding: 5px 23px;
+                color: #C1C1C1;
+                border: none;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .Section4 {
+        padding-top: 40px;
+        padding-bottom: 33px;
+        background-color: #DBDBDB;
+
+        .SectionName {
+            font-size: 40px;
+            margin-left: 120px;
+        }
+
+        .ScrollImage {
+            display: flex;
+            overflow-x: scroll;
+            margin-bottom: 32px;
+            margin-top: 61px;
+            gap: 8px;
+        }
+
+        .ScrollImage::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .ScrollImage::-webkit-scrollbar-thumb {
+            background: #75868D;
+            border-radius: 10px;
+        }
+
+        .ScrollImage::-webkit-scrollbar-track {
+            background: rgba(237, 237, 237, 0.4);
+        }
+
+        .Add4Section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            button {
+                padding: 15px 23px;
+                background-color: #25414C;
+                color: #C1C1C1;
+                font-size: 15px;
+                border: none;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.prev {
+    position: absolute;
+    left: 20px;
+    top: 45%;
+    z-index: 999;
+    cursor: pointer;
+}
+
+.next {
+    position: absolute;
+    right: 20px;
+    top: 45%;
+    z-index: 999;
+    cursor: pointer;
+}

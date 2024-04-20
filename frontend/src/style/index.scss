@@ -1,2 +1,9 @@
 // *
 @import "./Common.scss";
+
+//Header&Footer
+@import "./components/Header&Footer/Header.scss";
+
+//Main
+@import "./components/Main/Mainpage.scss";
+@import "./components/Main/SearchModal.scss";
