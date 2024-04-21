@@ -10,21 +10,24 @@ import {
     MainTestImg1,
     MainTestImg2
 } from "../../assets/image/index";
-import SearchModal from "./SearchModal";
+import { ImageContainer, Section4Container } from "../index";
 
-interface MainProps {
-}
+interface MainProps { }
 
-const Mainpage: React.FC<MainProps> = ({ }) => {
+const Mainpage: React.FC<MainProps> = () => {
     const [hovered, setHovered] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
     const carouselRef = useRef<Carousel>(null);
-    const [imageHovered, setImageHovered] = useState({
+    const [imageHovered, setImageHovered] = useState<{ [key: string]: boolean }>({
         img1: false,
         img2: false,
         img3: false,
-        img4: false
-    });
+        img4: false,
+        img5: false,
+        img6: false,
+        img7: false,
+        img8: false,
+    } as { [key: string]: boolean });
 
     const handleImageMouseEnter = (img: any) => {
         setImageHovered(prevState => ({ ...prevState, [img]: true }));
@@ -60,7 +63,30 @@ const Mainpage: React.FC<MainProps> = ({ }) => {
             interval = setInterval(goToNextSlide, 4000);
         }
         return () => clearInterval(interval);
-    }, [currentSlide, hovered, goToNextSlide]);
+    }, [currentSlide, hovered]);
+
+    const Section2Containers = [
+        { id: 'img1', src: MainTestImg1, menutext: 'Top > Jacket', text: '이미지 1', point: '16,000point' },
+        { id: 'img2', src: MainTestImg2, menutext: 'Top > Jacket', text: '이미지 2', point: '16,000point' }
+    ];
+
+    const imageContainers = [
+        { id: 'img1', src: MainTestImg1, menutext: 'Top > Jacket', text: '이미지 1', point: '16,000point' },
+        { id: 'img2', src: MainTestImg2, menutext: 'Top > Jacket', text: '이미지 2', point: '16,000point' },
+        { id: 'img1', src: MainTestImg1, menutext: 'Top > Jacket', text: '이미지 1', point: '16,000point' },
+        { id: 'img2', src: MainTestImg2, menutext: 'Top > Jacket', text: '이미지 2', point: '16,000point' },
+    ];
+
+    const section4Containers = [
+        { id: 'img1', src: MainTestImg1, menutext: 'Top > Jacket', text: '이미지 4', point: '16,000point' },
+        { id: 'img2', src: MainTestImg2, menutext: 'Top > Jacket', text: '이미지 4', point: '16,000point' },
+        { id: 'img3', src: MainTestImg1, menutext: 'Top > Jacket', text: '이미지 1', point: '16,000point' },
+        { id: 'img4', src: MainTestImg2, menutext: 'Top > Jacket', text: '이미지 2', point: '16,000point' },
+        { id: 'img5', src: MainTestImg1, menutext: 'Top > Jacket', text: '이미지 1', point: '16,000point' },
+        { id: 'img6', src: MainTestImg2, menutext: 'Top > Jacket', text: '이미지 2', point: '16,000point' },
+        { id: 'img7', src: MainTestImg1, menutext: 'Top > Jacket', text: '이미지 1', point: '16,000point' },
+        { id: 'img8', src: MainTestImg2, menutext: 'Top > Jacket', text: '이미지 2', point: '16,000point' },
+    ];
 
     return (
         <div className="MainPage">
@@ -99,24 +125,18 @@ const Mainpage: React.FC<MainProps> = ({ }) => {
 
             <div className="Section2">
                 <div className="TwoLeft">
-                    <ImageContainer
-                        src={MainTestImg1}
-                        isHovered={imageHovered.img1}
-                        onMouseEnter={() => handleImageMouseEnter('img1')}
-                        onMouseLeave={() => handleImageMouseLeave('img1')}
-                        menutext="Top > Jacket"
-                        text="이미지 1"
-                        point="16,000point"
-                    />
-                    <ImageContainer
-                        src={MainTestImg2}
-                        isHovered={imageHovered.img2}
-                        onMouseEnter={() => handleImageMouseEnter('img2')}
-                        onMouseLeave={() => handleImageMouseLeave('img2')}
-                        menutext="Top > Jacket"
-                        text="이미지 2"
-                        point="16,000point"
-                    />
+                    {Section2Containers.map((image) => (
+                        <ImageContainer
+                            key={image.id}
+                            src={image.src}
+                            isHovered={imageHovered[image.id]}
+                            onMouseEnter={() => handleImageMouseEnter(image.id)}
+                            onMouseLeave={() => handleImageMouseLeave(image.id)}
+                            menutext={image.menutext}
+                            text={image.text}
+                            point={image.point}
+                        />
+                    ))}
                 </div>
                 <div className="TwoRight">
                     <div className="Best">BEST SELLERS</div>
@@ -129,48 +149,66 @@ const Mainpage: React.FC<MainProps> = ({ }) => {
                     <button>+ 다른 상품 둘러보기</button>
                 </div>
             </div>
-            <div className="Section2">
-                <div className="ThreeRight">
-                    <button>+ 다른 상품 둘러보기</button>
-                    <div className="GoodsName">Fullcount Denim Jacket “Dartford”</div>
-                    <div className="Explan">
-                        풀카운트의 베이직 2세대 자캣을 베이스로 제작<br />
-                        되었으며, 13.7OZ 오리지널 잠바브웨 코튼 셀비지<br />
-                        데님이 적용 되었습니다.
-                    </div>
+            <div className="Section3">
+                <div className="Se3Name">BEST SELLERS</div>
+                <div className="Section3_image">
+                    {imageContainers.map((image) => (
+                        <ImageContainer
+                            key={image.id}
+                            src={image.src}
+                            isHovered={imageHovered[image.id]}
+                            onMouseEnter={() => handleImageMouseEnter(image.id)}
+                            onMouseLeave={() => handleImageMouseLeave(image.id)}
+                            menutext={image.menutext}
+                            text={image.text}
+                            point={image.point}
+                        />
+                    ))}
                 </div>
-                <div className="TwoLeft">
-                    <ImageContainer
-                        src={MainTestImg1}
-                        isHovered={imageHovered.img3}
-                        onMouseEnter={() => handleImageMouseEnter('img3')}
-                        onMouseLeave={() => handleImageMouseLeave('img3')}
-                        menutext="Top > Jacket"
-                        text="이미지 3"
-                        point="16,000point"
-                    />
-                    <ImageContainer
-                        src={MainTestImg2}
-                        isHovered={imageHovered.img4}
-                        onMouseEnter={() => handleImageMouseEnter('img4')}
-                        onMouseLeave={() => handleImageMouseLeave('img4')}
-                        menutext="Top > Jacket"
-                        text="이미지 4"
-                        point="16,000point"
-                    />
+                <div className="Section3_image">
+                    {imageContainers.map((image) => (
+                        <ImageContainer
+                            key={image.id}
+                            src={image.src}
+                            isHovered={imageHovered[image.id]}
+                            onMouseEnter={() => handleImageMouseEnter(image.id)}
+                            onMouseLeave={() => handleImageMouseLeave(image.id)}
+                            menutext={image.menutext}
+                            text={image.text}
+                            point={image.point}
+                        />
+                    ))}
+                </div>
+                <div className="AddPlus">
+                    <button>+ 다른 상품 둘러보기</button>
+                </div>
+            </div>
+
+            <div className="Section3-1">
+                <div className="Named3-1">“Curated for you”</div>
+                <div className="Explan3-1">
+                    Enter a world where style and substance meet.All products are carefully selected to reflect the epitome<br />
+                    of quality and taste. We combine the best of contemporary fashion with classic,timeless elegance to<br />
+                    create a sophisticated and welcoming atmosphere. Every detail speaks of discretion and luxury.<br />
+                    Every garment has been selected with an unwavering commitment to excellence, and explore our<br />
+                    carefully curated collection of top brands that epitomize the essence of luxury style.<br />
                 </div>
             </div>
             <div className="Section4">
-                <span className="SectionName">BEST SELLERS</span>
+                <span className="SectionName">BEST SALE</span>
                 <div className="ScrollImage">
-                    <img src={MainTestImg1} />
-                    <img src={MainTestImg2} />
-                    <img src={MainTestImg1} />
-                    <img src={MainTestImg2} />
-                    <img src={MainTestImg1} />
-                    <img src={MainTestImg2} />
-                    <img src={MainTestImg1} />
-                    <img src={MainTestImg2} />
+                    {section4Containers.map((image) => (
+                        <Section4Container
+                            key={image.id}
+                            src={image.src}
+                            isHovered={imageHovered[image.id]}
+                            onMouseEnter={() => handleImageMouseEnter(image.id)}
+                            onMouseLeave={() => handleImageMouseLeave(image.id)}
+                            menutext={image.menutext}
+                            text={image.text}
+                            point={image.point}
+                        />
+                    ))}
                 </div>
                 <div className="Add4Section">
                     <button>+ 더보기</button>
@@ -179,27 +217,5 @@ const Mainpage: React.FC<MainProps> = ({ }) => {
         </div>
     );
 };
-
-const ImageContainer = ({ src, isHovered, onMouseEnter, onMouseLeave, text, menutext, point }: {
-    src: string;
-    isHovered: boolean;
-    onMouseEnter: () => void;
-    onMouseLeave: () => void;
-    text: string;
-    menutext: string;
-    point: string;
-}) => (
-    <div className="image-container" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-        <img src={src} alt={text} />
-        {isHovered &&
-            <div className="image-text">
-                <div className="ImageMenuText">{menutext}</div>
-                <div className="ImageText">{text}</div>
-                <div className="ImagePointText">{point}</div>
-            </div>
-        }
-    </div>
-);
-
 
 export default Mainpage;
