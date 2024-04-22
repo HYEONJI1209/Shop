@@ -150,7 +150,7 @@ const Mainpage: React.FC<MainProps> = () => {
                 </div>
             </div>
             <div className="Section3">
-                <div className="Se3Name">BEST SELLERS</div>
+                <div className="Se3Name">NEW ARRIVALS</div>
                 <div className="Section3_image">
                     {imageContainers.map((image) => (
                         <ImageContainer

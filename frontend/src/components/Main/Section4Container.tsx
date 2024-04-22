@@ -8,7 +8,7 @@ const Section4Container = ({ src, isHovered, onMouseEnter, onMouseLeave, text, m
     point: string;
 }) => (
     <div className="section4-container" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-        <img src={src} alt={text} />
+        <img className="Image" src={src} alt={text} />
         {isHovered &&
             <div className="image-text">
                 <div className="ImageMenuText">{menutext}</div>

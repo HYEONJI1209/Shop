@@ -8,7 +8,7 @@ const ImageContainer = ({ src, isHovered, onMouseEnter, onMouseLeave, text, menu
     point: string;
 }) => (
     <div className="image-container" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-        <img src={src} alt={text} />
+        <img className="Image" src={src} alt={text} />
         <div className="image-text">
             <div className="ImageMenuText">{menutext}</div>
             <div className="ImageText">{text}</div>
