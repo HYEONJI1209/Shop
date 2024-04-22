@@ -101,6 +101,7 @@
             display: flex;
             align-items: center;
             justify-content: space-around;
+            gap: 0px;
         }
 
         .AddPlus {
@@ -281,4 +282,29 @@
             font-size: 15px;
         }
     }
+}
+
+@include laptop{
+
+    .MainPage{
+    .Section2 {
+        padding: 62px 80px;
+.TwoRight{
+    width: 50%;
+
+    .GoodsName{
+        font-size: 30px;
+    }
+}
+    }
+
+    .Section3 {
+        padding: 45px 40px 50px 40px;
+
+        .Section3_image {
+            gap: 20px;
+            justify-content: center;
+        }
+    }
+}
 }
