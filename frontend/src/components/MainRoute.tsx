@@ -1,8 +1,12 @@
 import React from "react";
-import { Mainpage, Register } from "./index";
+import {
+    Mainpage,
+    Register,
+    Registration,
+} from "./index";
 import { Routes, Route } from "react-router-dom";
 
-interface RouteProps {}
+interface RouteProps { }
 
 const MainRoute: React.FC<RouteProps> = ({ }) => {
     return (
@@ -10,6 +14,7 @@ const MainRoute: React.FC<RouteProps> = ({ }) => {
             <Routes>
                 <Route path="/" element={<Mainpage />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/WildFixManagerRegistrarion" element={<Registration />} />
             </Routes>
         </div>
     );
