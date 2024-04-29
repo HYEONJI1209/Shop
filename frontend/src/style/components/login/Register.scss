@@ -1,0 +1,168 @@
+.Register {
+    padding-top: 74px;
+    padding-bottom: 268px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .RegisterTitle {
+        width: 100%;
+        font-size: 32px;
+        font-weight: bold;
+        color: #25414C;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .ResDataForm {
+        width: 600px;
+
+        .InputBox {
+            display: flex;
+            flex-direction: column;
+
+            input {
+                height: 64px;
+                border-radius: 10px;
+                border: 1px solid #25414C;
+                text-align: center;
+                margin-top: 5px;
+            }
+
+            input::placeholder {
+                color: #797979;
+            }
+
+            .InputName {
+                margin-top: 44px;
+                font-weight: bold;
+                font-size: 20px;
+            }
+
+            .LongInput {
+                width: 100%;
+            }
+
+            .LongInput:focus {
+                outline: none;
+            }
+
+            #AddressType {
+                margin-top: 16px;
+            }
+
+            .Commant {
+                margin-top: 5px;
+                font-size: 12px;
+            }
+
+            .ShortBox {
+                width: calc(100% + 6px);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .ShortInput {
+                    width: 453px;
+                }
+
+                .CheckBtn {
+                    width: 125px;
+                    border-radius: 10px;
+                    background-color: #25414C;
+                    height: 64px;
+                    color: #fff;
+                    font-size: 20px;
+                    border: none;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .AggrementTop {
+            margin-top: 39px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .GrayAgree {
+                color: #797979;
+            }
+
+            .GrayAgree:hover{
+                text-decoration: underline;
+            }
+
+            .RedAgree {
+                color: #E00000;
+            }
+        }
+
+        .AggrementBtm {
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .GrayAgree {
+                color: #797979;
+            }
+
+            .GrayAgree:hover{
+                text-decoration: underline;
+            }
+
+            .RedAgree {
+                color: #E00000;
+            }
+        }
+
+            .ResBtn{
+                background-color: #25414C;
+                height: 68px;
+                border-radius: 10px;
+                width: 100%;
+                margin-top: 38px;
+                color: #fff;
+                font-size: 20px;
+                border: none;
+                cursor: pointer;
+                box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                margin-bottom: 17px;
+            }
+
+            .DisResBtn{
+                background-color: #d9d9d9;
+                height: 68px;
+                border-radius: 10px;
+                width: 100%;
+                margin-top: 38px;
+                color: #fff;
+                font-size: 20px;
+                border: none;
+                box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                margin-bottom: 17px;
+            }
+    }
+    .AskToLogin{
+        font-size: 20px;
+        color: #797979;
+    }
+
+    .ToLogin{
+        cursor: pointer;
+        color: #797979;
+        text-decoration: none;
+    }
+    .ToLogin:hover{
+        text-decoration: underline;
+    }
+}
+
+.ErrorMessage{
+    color: #FF6161;
+    font-size: 12px;
+    margin-top: 5px;
+}
