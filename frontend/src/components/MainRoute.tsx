@@ -3,6 +3,7 @@ import {
     Mainpage,
     Register,
     Registration,
+    Login,
 } from "./index";
 import { Routes, Route } from "react-router-dom";
 
@@ -15,6 +16,7 @@ const MainRoute: React.FC<RouteProps> = ({ }) => {
                 <Route path="/" element={<Mainpage />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/WildFixManagerRegistrarion" element={<Registration />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
         </div>
     );

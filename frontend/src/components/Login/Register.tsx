@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RegisterServices, GetRegisterServices, checkEmailDuplicate } from "../../services/Login/RegiServices";
 import DaumPostcode from 'react-daum-postcode';
 import Modal from "react-modal";
-import { CheckBoxBlank, CheckBoxChecked } from "../../assets/image/index";
+import { CheckBoxBlank, CheckBoxChecked, closeEye, openEye } from "../../assets/image/index";
 import { Link } from "react-router-dom";
 interface UserData {
     username: string;
@@ -31,6 +31,8 @@ const Register: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [FirstCheck, setFirstCheck] = useState<boolean>(false);
     const [SecCheck, setSecCheck] = useState<boolean>(false);
+    const [showpassword, setShowpassword] = useState<boolean>(false);
+    const [showpasswordcehck, setShowpasswordcheck] = useState<boolean>(false);
 
     useEffect(() => {
         async function fetchData() {
@@ -45,12 +47,25 @@ const Register: React.FC = () => {
     }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        // 입력이 변경될 때마다 유효성 검사 및 오류 상태 설정
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+
+        // 입력이 변경될 때마다 유효성 검사 및 오류 상태 설정
+        validateInput(name, value);
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!validateForm() || !FirstCheck) {
+        // 각 입력 필드의 유효성을 확인하고 오류 메시지를 표시
+        validateInput("username", formData.username);
+        validateInput("email", formData.email);
+        validateInput("password", formData.password);
+        validateInput("checkpassword", formData.checkpassword);
+        validateInput("phone", formData.phone);
+
+        // 오류가 있거나 체크박스가 선택되지 않았을 경우 종료
+        if (!FirstCheck || Object.values(error).some(errorMessage => errorMessage !== "")) {
             return;
         }
 
@@ -71,6 +86,7 @@ const Register: React.FC = () => {
         }
     };
 
+
     const handleCheckDuplicate = async () => {
         try {
             const isDuplicate = await checkEmailDuplicate(formData.email);
@@ -84,38 +100,25 @@ const Register: React.FC = () => {
         }
     };
 
-    const validateForm = () => {
-        let formIsValid = true;
-        const newErrorState = {
-            username: "",
-            email: "",
-            password: "",
-            checkpassword: "",
-            phone: "",
-        };
-
-        if (!isValidEmail(formData.email)) {
-            newErrorState.email = "올바른 이메일 주소를 입력하세요.";
-            formIsValid = false;
+    const validateInput = (name: string, value: string) => {
+        let errorMessage = "";
+        switch (name) {
+            case "email":
+                errorMessage = !isValidEmail(value) ? "올바른 이메일 주소를 입력하세요." : "";
+                break;
+            case "password":
+                errorMessage = !isValidPassword(value) ? "비밀번호는 6~20자의 영문자, 숫자, 특수 문자(!@#$%^&*?)를 포함해야 합니다." : "";
+                break;
+            case "checkpassword":
+                errorMessage = formData.password !== value ? "비밀번호가 일치하지 않습니다." : "";
+                break;
+            case "phone":
+                errorMessage = !isValidPhoneNumber(value) ? "올바른 전화번호를 입력하세요." : "";
+                break;
+            default:
+                break;
         }
-
-        if (!isValidPassword(formData.password)) {
-            newErrorState.password = "비밀번호는 6~20자의 영문자, 숫자, 특수 문자(!@#$%^&*?)를 포함해야 합니다.";
-            formIsValid = false;
-        }
-
-        if (formData.password !== formData.checkpassword) {
-            newErrorState.checkpassword = "비밀번호가 일치하지 않습니다.";
-            formIsValid = false;
-        }
-
-        if (!isValidPhoneNumber(formData.phone)) {
-            newErrorState.phone = "올바른 전화번호를 입력하세요.";
-            formIsValid = false;
-        }
-
-        setError(newErrorState);
-        return formIsValid;
+        setError(prevState => ({ ...prevState, [name]: errorMessage }));
     };
 
     const isValidEmail = (email: string) => {
@@ -132,10 +135,9 @@ const Register: React.FC = () => {
 
     const isValidPhoneNumber = (phone: string) => {
         // 전화번호 유효성 확인 로직
-        const phoneRegex = /^[0-9]+$/;
+        const phoneRegex = /^010\d{8}$/;
         return phoneRegex.test(phone);
     };
-
 
     const completeHandler = (data: any) => {
         setZipcode(data.zonecode);
@@ -186,6 +188,22 @@ const Register: React.FC = () => {
         );
     };
 
+    const OpenEyefuction = () => {
+        const passwordInput = document.getElementById('password');
+        if (passwordInput instanceof HTMLInputElement) {
+            passwordInput.type = showpassword ? 'password' : 'text';
+            setShowpassword(!showpassword);
+        }
+    }
+
+    const OpenEyecheckfuction = () => {
+        const passwordInput = document.getElementById('checkpassword');
+        if (passwordInput instanceof HTMLInputElement) {
+            passwordInput.type = showpasswordcehck ? 'password' : 'text';
+            setShowpasswordcheck(!showpasswordcehck);
+        }
+    }
+
     return (
         <div className="Register">
             <div className="RegisterTitle">회원가입</div>
@@ -222,27 +240,33 @@ const Register: React.FC = () => {
                 </div>
                 <div className="InputBox">
                     <label className="InputName" htmlFor="password">비밀번호</label>
-                    <input
-                        className="LongInput"
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        placeholder="비밀번호를 입력해주세요."
-                    />
+                    <div className="PwBox">
+                        <input
+                            className="PwInput"
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="비밀번호를 입력해주세요."
+                        />
+                        <img src={showpassword ? openEye : closeEye} onClick={OpenEyefuction} />
+                    </div>
                     {error ? <div className="ErrorMessage">{error.password}</div> : <span className="Commant">6~20자의 영문자, 숫자, 특수 문자(!@#$%^&*?)가 포함</span>}
                 </div>
                 <div className="InputBox">
                     <label className="InputName" htmlFor="checkpassword">비밀번호 확인</label>
-                    <input
-                        type="password"
-                        className="LongInput"
-                        id="checkpassword"
-                        name="checkpassword"
-                        onChange={handleChange}
-                        placeholder="비밀번호를 입력해주세요."
-                    />
+                    <div className="PwBox">
+                        <input
+                            type="password"
+                            className="PwInput"
+                            id="checkpassword"
+                            name="checkpassword"
+                            onChange={handleChange}
+                            placeholder="비밀번호를 입력해주세요."
+                        />
+                        <img src={showpasswordcehck ? openEye : closeEye} onClick={OpenEyecheckfuction} />
+                    </div>
                     {error && <div className="ErrorMessage">{error.checkpassword}</div>}
                 </div>
                 <div className="InputBox">

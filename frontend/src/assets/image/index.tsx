@@ -19,3 +19,6 @@ export { default as MainTestImg2 } from "./MainPage/MainTestImg2.svg";
 //login
 export { default as CheckBoxBlank } from "./login/CheckBoxBlank.svg";
 export { default as CheckBoxChecked } from "./login/CheckBoxChecked.svg";
+export { default as closeEye } from "./login/closeEye.svg";
+export { default as openEye } from "./login/openEye.svg";
+export { default as LoginIcon } from "./login/LoginIcon.svg";
