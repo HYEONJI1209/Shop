@@ -8,5 +8,13 @@ const GetRegisterServices = () => {
   return api.get("/getresData");
 };
 
+const checkEmailDuplicate = async (email) => {
+  try {
+      const response = await api.post("/checkEmail", { email });
+      return response.data;
+  } catch (error) {
+      throw new Error("Error checking email duplication: " + error.message);
+  }
+};
 
-export { RegisterServices, GetRegisterServices };
+export { RegisterServices, GetRegisterServices, checkEmailDuplicate };

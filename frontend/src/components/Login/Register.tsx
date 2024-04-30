@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { RegisterServices, GetRegisterServices } from "../../services/Login/RegiServices";
+import { RegisterServices, GetRegisterServices, checkEmailDuplicate } from "../../services/Login/RegiServices";
 import DaumPostcode from 'react-daum-postcode';
 import Modal from "react-modal";
 import { CheckBoxBlank, CheckBoxChecked } from "../../assets/image/index";
@@ -53,14 +53,34 @@ const Register: React.FC = () => {
         if (!validateForm() || !FirstCheck) {
             return;
         }
+
+        // 주소 부분을 폼 데이터에 추가
+        const updatedFormData = { ...formData, address: `${roadAddress} ${detailAddress}` };
+
+        // checkpassword 필드를 폼 데이터에서 제외
+        const { checkpassword, ...formDataWithoutCheckPassword } = updatedFormData;
+
         try {
-            await RegisterServices(formData);
+            await RegisterServices(formDataWithoutCheckPassword);
             console.log("등록 성공!");
             // 성공적으로 등록된 데이터 가져오기
             const response = await GetRegisterServices();
             setRegisteredData(response.data);
         } catch (error) {
             console.error("등록 실패:", error);
+        }
+    };
+
+    const handleCheckDuplicate = async () => {
+        try {
+            const isDuplicate = await checkEmailDuplicate(formData.email);
+            if (isDuplicate) {
+                setError(prevState => ({ ...prevState, email: "중복된 이메일 주소입니다." }));
+            } else {
+                setError(prevState => ({ ...prevState, email: "" }));
+            }
+        } catch (error) {
+            console.error("중복 확인 실패:", error);
         }
     };
 
@@ -156,6 +176,16 @@ const Register: React.FC = () => {
         setSecCheck(!SecCheck);
     }
 
+    const isAnyFieldEmpty = () => {
+        return (
+            Object.values(formData).some(value => value === '') ||
+            !isValidEmail(formData.email) ||
+            !isValidPassword(formData.password) ||
+            formData.password !== formData.checkpassword ||
+            !isValidPhoneNumber(formData.phone)
+        );
+    };
+
     return (
         <div className="Register">
             <div className="RegisterTitle">회원가입</div>
@@ -174,17 +204,19 @@ const Register: React.FC = () => {
                 </div>
                 <div className="InputBox">
                     <label className="InputName" htmlFor="email">이메일</label>
-                    <div className="ShortBox">
-                        <input
-                            className="ShortInput"
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            placeholder="이메일 주소를 입력해주세요."
-                        />
-                        <button className="CheckBtn">중복확인</button>
+                    <div className="ShortBoxs">
+                        <div className="ShortBox">
+                            <input
+                                className="ShortInput"
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                placeholder="이메일 주소를 입력해주세요."
+                            />
+                            <button className="CheckBtn" onClick={handleCheckDuplicate}>중복확인</button>
+                        </div>
                         {error && <div className="ErrorMessage">{error.email}</div>}
                     </div>
                 </div>
@@ -258,7 +290,7 @@ const Register: React.FC = () => {
                         <span className="GrayAgree">개인정보 수집 및 이용약관 동의</span> <span className="RedAgree">(필수)</span>
                     </div>
                     <div>
-                        <img src={FirstCheck ? CheckBoxBlank : CheckBoxChecked} onClick={FirstCheckClick} />
+                        <img src={FirstCheck ? CheckBoxChecked : CheckBoxBlank} onClick={FirstCheckClick} />
                     </div>
                 </div>
                 <div className="AggrementBtm">
@@ -266,11 +298,12 @@ const Register: React.FC = () => {
                         <span className="GrayAgree">마케팅 정보 동의</span> <span className="RedAgree">(선택)</span>
                     </div>
                     <div>
-                        <img src={SecCheck ? CheckBoxBlank : CheckBoxChecked} onClick={SecCheckClick} />
+                        <img src={SecCheck ? CheckBoxChecked : CheckBoxBlank} onClick={SecCheckClick} />
                     </div>
                 </div>
 
-                <button className={!FirstCheck || !validateForm() ? 'DisResBtn' : 'ResBtn'} type="submit" disabled={!FirstCheck || !validateForm()}>회원가입</button>
+                {/* <button className={!FirstCheck || isAnyFieldEmpty() ? 'DisResBtn' : 'ResBtn'} type="submit" disabled={!FirstCheck || isAnyFieldEmpty()}>회원가입</button> */}
+                <button className="ResBtn" type="submit">회원가입</button>
             </form>
             <span className="AskToLogin">회원이신가요? <Link to="/login" className="ToLogin">로그인</Link></span>
         </div>
