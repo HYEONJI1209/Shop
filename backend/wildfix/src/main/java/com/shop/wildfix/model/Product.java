@@ -15,6 +15,7 @@ public class Product {
     private String explanation;
     private String size;
     private Double price;
+    private String filePath;
 
     public Long getId() {
         return id;
@@ -54,6 +55,14 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     @Override
