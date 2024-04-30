@@ -10,4 +10,8 @@ export { default as Section4Container } from "./Main/Section4Container";
 export { default as Registration } from "./Manager/Registration";
 
 
+//login
 export { default as Register } from "./Login/Register";
+export { default as Login } from "./Login/Login";
+export { default as Resetpassword } from "./Login/Resetpassword";
+export { default as FinResetpw } from "./Login/FinResetpw";

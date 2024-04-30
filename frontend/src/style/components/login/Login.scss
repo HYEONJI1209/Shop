@@ -1,0 +1,126 @@
+.Login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 100px);
+
+    .LoginHeader {
+        margin-bottom: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .LoginTitle {
+            margin-left: 16px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #25414C;
+        }
+    }
+
+    .InputBox {
+        width: 394px;
+        margin-bottom: 62px;
+
+        .IdInputBox {
+            margin-bottom: 32px;
+
+            .IdInput {
+                width: 100%;
+                height: 64px;
+                border-radius: 10px;
+                border: 1px solid #25414C;
+                text-align: center;
+                padding: 0;
+            }
+
+            .IdInput::placeholder {
+                color: #797979;
+            }
+
+            .IdInput:focus {
+                outline: none;
+            }
+        }
+
+        .resetPasswordInputBox{
+            margin-bottom: 32px;
+        }
+
+        .PasswordInputBox {
+            width: 100%;
+            height: 64px;
+            border-radius: 10px;
+            border: 1px solid #25414C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .PassInput {
+                width: 310px;
+                text-align: center;
+                height: 55px;
+                border: none;
+                text-align: center;
+            }
+
+            .PassInput::placeholder {
+                color: #797979;
+            }
+
+            .PassInput:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .FinishReset{
+        font-size: 24px;
+        margin-bottom: 126px;
+    }
+
+    .LoginBtn {
+        width: 394px;
+        height: 68px;
+        border-radius: 10px;
+        background-color: #25414C;
+        color: #fff;
+        font-size: 20px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        border: none;
+        cursor: pointer;
+        margin-bottom: 18px;
+    }
+
+    .GoRegister {
+        font-size: 20px;
+        color: #797979;
+        margin-bottom: 71px;
+
+        .toRegis{
+            color: #797979;
+            text-decoration: none;
+        }
+
+        .toRegis:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    .ForgetPw {
+        font-size: 20px;
+        color: #2e2e2e;
+
+        .toRegis{
+            color: #2e2e2e;
+            text-decoration: none;
+        }
+
+        .toRegis:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
