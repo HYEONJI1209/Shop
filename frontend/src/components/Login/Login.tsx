@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { LoginIcon, closeEye, openEye } from "../../assets/image/index";
+import {LoginServices} from "../../services/Login/LoginServices";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const [userInput, setUserInput] = useState("");
@@ -45,25 +47,25 @@ const Login = () => {
         if (!validateInputs()) {
             return;
         }
-
+    
         try {
             const { useremail, phonenumber } = getUserInfo();
-
-            const response = await fetch('/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ useremail, phonenumber, password })
-            });
-
-            if (!response.ok) {
+    
+            const formData = {
+                useremail,
+                phonenumber,
+                password
+            };
+    
+            const response = await LoginServices(formData);
+    
+            if (response.status >= 200 && response.status < 300) {
+                // 성공적으로 응답을 받았을 때 처리
+                const data = await response.data;
+                console.log(data); // 받은 데이터 처리
+            } else {
                 throw new Error('로그인에 실패했습니다.');
             }
-
-            // 성공적으로 응답을 받았을 때 처리
-            const data = await response.json();
-            console.log(data); // 받은 데이터 처리
         } catch (error: any) {
             console.error('Error:', error.message);
         }
@@ -133,10 +135,10 @@ const Login = () => {
 
             <button className="LoginBtn" onClick={handleLogin}>로그인</button>
             <div className="GoRegister">
-                아직 회원이 아닌가요? <span>회원가입</span>
+                아직 회원이 아닌가요? <Link className="toRegis" to="/register">회원가입</Link>
             </div>
             <div className="ForgetPw">
-                비밀번호를 잊으셨나요? <span>비밀번호 찾기</span>
+                비밀번호를 잊으셨나요? <Link className="toRegis" to="/resetpass">비밀번호 찾기</Link>
             </div>
         </div>
     );

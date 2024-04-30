@@ -22,3 +22,4 @@ export { default as CheckBoxChecked } from "./login/CheckBoxChecked.svg";
 export { default as closeEye } from "./login/closeEye.svg";
 export { default as openEye } from "./login/openEye.svg";
 export { default as LoginIcon } from "./login/LoginIcon.svg";
+export { default as ResetpwIcon } from "./login/ResetpwIcon.svg";

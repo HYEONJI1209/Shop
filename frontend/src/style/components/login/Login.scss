@@ -7,6 +7,9 @@
 
     .LoginHeader {
         margin-bottom: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         .LoginTitle {
             margin-left: 16px;
@@ -41,6 +44,10 @@
             }
         }
 
+        .resetPasswordInputBox{
+            margin-bottom: 32px;
+        }
+
         .PasswordInputBox {
             width: 100%;
             height: 64px;
@@ -68,6 +75,11 @@
         }
     }
 
+    .FinishReset{
+        font-size: 24px;
+        margin-bottom: 126px;
+    }
+
     .LoginBtn {
         width: 394px;
         height: 68px;
@@ -86,7 +98,12 @@
         color: #797979;
         margin-bottom: 71px;
 
-        span:hover {
+        .toRegis{
+            color: #797979;
+            text-decoration: none;
+        }
+
+        .toRegis:hover {
             text-decoration: underline;
             cursor: pointer;
         }
@@ -96,7 +113,12 @@
         font-size: 20px;
         color: #2e2e2e;
 
-        span:hover {
+        .toRegis{
+            color: #2e2e2e;
+            text-decoration: none;
+        }
+
+        .toRegis:hover {
             text-decoration: underline;
             cursor: pointer;
         }
