@@ -64,7 +64,7 @@ const Header: React.FC<HeaderProps> = ({ setSearchClick, setMypageClick }) => {
                             className="HeaderImage"
                             src={hoveredIcon === index ? icon.hover : icon.normal}
                         />
-                        {index === 2 && <span style={{fontSize:'8px', color:'#fff'}}>10,000point</span>}
+                        {index === 2 && <span style={{fontSize:'11px', color:'#fff'}}>10,000point</span>}
                     </div>
                 ))}
             </div>
