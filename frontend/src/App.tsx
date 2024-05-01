@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './style/index.scss';
-import { Header, MainRoute, SearchModal } from "./components/index";
+import { Header, MainRoute, SearchModal, Footer } from "./components/index";
 
 function App() {
   const [searchClick, setSearchClick] = useState(false);
@@ -13,6 +13,7 @@ function App() {
         setMypageClick={setMypageClick}
       />
       <MainRoute />
+      <Footer />
 
       {searchClick? <SearchModal searchClick={searchClick} setSearchClick={setSearchClick} /> : <></>}
     </div>

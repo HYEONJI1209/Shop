@@ -1,0 +1,80 @@
+.Footer {
+    width: 100%;
+
+    .FooterTop {
+        width: 100%;
+        background-color: #E2E2E2;
+        height: 233px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .FooterBy {
+            margin-bottom: 39px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .Contect {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .ByCon {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                width: 25%;
+                gap: 16px;
+
+                .Name {
+                    font-size: 20px;
+                    color: #161616;
+                }
+
+                .Email {
+                    font-size: 16px;
+                    color: #161616;
+                }
+            }
+
+            .ByConMid {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                width: 25%;
+                border-left: 1px solid #000;
+                border-right: 1px solid #000;
+                gap: 16px;
+
+                .Name {
+                    font-size: 20px;
+                    color: #161616;
+                }
+
+                .Email {
+                    font-size: 16px;
+                    color: #161616;
+                }
+            }
+        }
+    }
+
+    .FooterBtm {
+        height: 102px;
+        background-color: #25414C;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    cursor: pointer;
+}
