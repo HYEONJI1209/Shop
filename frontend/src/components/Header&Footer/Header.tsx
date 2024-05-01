@@ -7,6 +7,7 @@ import {
     SearchHoverIcon,
     SearchIcon
 } from "../../assets/image/index";
+import {HeaderServices} from "../../services/Header/HeaderServices";
 
 interface HeaderProps {
     setSearchClick: React.Dispatch<React.SetStateAction<boolean>>;
@@ -40,15 +41,19 @@ const Header: React.FC<HeaderProps> = ({ setSearchClick, setMypageClick }) => {
         }
     };
 
+    const handleMenuClick = (menuItem: string) => {
+        HeaderServices({ menuOption: menuItem });
+    };
+
     return (
         <div className="Header">
             <div className="Logo">
                 로고
             </div>
             <div className="Menu">
-                <span>TOP</span>
-                <span>BOTTOM</span>
-                <span>OUTER</span>
+                <span onClick={() => handleMenuClick("TOP")}>TOP</span>
+                <span onClick={() => handleMenuClick("BOTTOM")}>BOTTOM</span>
+                <span onClick={() => handleMenuClick("OUTER")}>OUTER</span>
             </div>
             <div className="MyBox">
                 {icons.map((icon, index) => (
