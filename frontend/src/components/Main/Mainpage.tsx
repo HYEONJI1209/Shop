@@ -142,9 +142,9 @@ const Mainpage: React.FC<MainProps> = () => {
                     <div className="Best">BEST SELLERS</div>
                     <div className="GoodsName">Fullcount Denim Jacket “Dartford”</div>
                     <div className="Explan">
-                        풀카운트의 베이직 2세대 자캣을 베이스로 제작<br />
-                        되었으며, 13.7OZ 오리지널 잠바브웨 코튼 셀비지<br />
-                        데님이 적용 되었습니다.
+                    거친 남성성과 반항적인 분위기를 떠올리게 하는 <br/>
+라이더 자켓은 그 강렬한 이미지 덕에 수많은 영화 속 남자 주인공들의<br/>
+의상으로 선택되어 왔습니다
                     </div>
                     <button>+ 다른 상품 둘러보기</button>
                 </div>

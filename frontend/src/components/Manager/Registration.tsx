@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import {PostRegistration} from "../../services/Manager/RegistrationServices";
+import { PostRegistration } from "../../services/Manager/RegistrationServices";
 
 const Registration = () => {
     const [selectedFile, setSelectedFile] = useState(null);
-    const [selectedSize, setSelectedSize] = useState("");
+    const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
     const [price, setPrice] = useState("");
     const [explanation, setExplanation] = useState("");
     const [productName, setProductName] = useState("");
@@ -13,7 +13,12 @@ const Registration = () => {
     };
 
     const handleSizeChange = (event:any) => {
-        setSelectedSize(event.target.value);
+        const { value, checked } = event.target;
+        if (checked) {
+            setSelectedSizes([...selectedSizes, value]);
+        } else {
+            setSelectedSizes(selectedSizes.filter(size => size !== value));
+        }
     };
 
     const handlePriceChange = (event:any) => {
@@ -30,10 +35,10 @@ const Registration = () => {
 
     const handleSubmit = async (event:any) => {
         event.preventDefault();
-        if (selectedFile && selectedSize && price && explanation && productName) {
+        if (selectedFile && selectedSizes.length > 0 && price && explanation && productName) {
             const formData = new FormData();
             formData.append("file", selectedFile);
-            formData.append("size", selectedSize);
+            formData.append("size", selectedSizes.join(","));
             formData.append("price", price);
             formData.append("explanation", explanation);
             formData.append("productName", productName);
@@ -62,13 +67,31 @@ const Registration = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="size">Size:</label>
-                    <select id="size" value={selectedSize} onChange={handleSizeChange}>
-                        <option value="">Select Size</option>
-                        <option value="small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                    </select>
+                    <label>Size:</label><br />
+                    <input 
+                        type="checkbox" 
+                        id="small" 
+                        value="small" 
+                        checked={selectedSizes.includes("small")} 
+                        onChange={handleSizeChange} 
+                    />
+                    <label htmlFor="small">Small</label><br />
+                    <input 
+                        type="checkbox" 
+                        id="medium" 
+                        value="medium" 
+                        checked={selectedSizes.includes("medium")} 
+                        onChange={handleSizeChange} 
+                    />
+                    <label htmlFor="medium">Medium</label><br />
+                    <input 
+                        type="checkbox" 
+                        id="large" 
+                        value="large" 
+                        checked={selectedSizes.includes("large")} 
+                        onChange={handleSizeChange} 
+                    />
+                    <label htmlFor="large">Large</label><br />
                 </div>
                 <div>
                     <label htmlFor="price">가격: </label>
