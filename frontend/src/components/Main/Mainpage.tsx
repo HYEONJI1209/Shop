@@ -11,6 +11,7 @@ import {
     MainTestImg2
 } from "../../assets/image/index";
 import { ImageContainer, Section4Container } from "../index";
+import ScrollToTop from "./ScrollToTop";
 
 interface MainProps { }
 
@@ -142,9 +143,9 @@ const Mainpage: React.FC<MainProps> = () => {
                     <div className="Best">BEST SELLERS</div>
                     <div className="GoodsName">Fullcount Denim Jacket “Dartford”</div>
                     <div className="Explan">
-                    거친 남성성과 반항적인 분위기를 떠올리게 하는 <br/>
-라이더 자켓은 그 강렬한 이미지 덕에 수많은 영화 속 남자 주인공들의<br/>
-의상으로 선택되어 왔습니다
+                        거친 남성성과 반항적인 분위기를 떠올리게 하는 <br />
+                        라이더 자켓은 그 강렬한 이미지 덕에 수많은 영화 속 남자 주인공들의<br />
+                        의상으로 선택되어 왔습니다
                     </div>
                     <button>+ 다른 상품 둘러보기</button>
                 </div>
@@ -185,13 +186,12 @@ const Mainpage: React.FC<MainProps> = () => {
             </div>
 
             <div className="Section3-1">
-                <div className="Named3-1">“Curated for you”</div>
+                <div className="Named3-1">“WildFix Provides Genuine Product”</div>
                 <div className="Explan3-1">
-                    Enter a world where style and substance meet.All products are carefully selected to reflect the epitome<br />
-                    of quality and taste. We combine the best of contemporary fashion with classic,timeless elegance to<br />
-                    create a sophisticated and welcoming atmosphere. Every detail speaks of discretion and luxury.<br />
-                    Every garment has been selected with an unwavering commitment to excellence, and explore our<br />
-                    carefully curated collection of top brands that epitomize the essence of luxury style.<br />
+                    WildFix는 빈티지의 본질을 전달합니다.<br />
+                    과거의 우아함과 현대의 품질을 결합해 시대를 초월한 제품을 제공합니다.<br />
+                    각 제품은 고유하며 진품임이 보장됩니다.<br />
+                    WildFix와 함께 역사의 발자취를 따라가며 과거의 매력을 현재에 불어넣어 보세요.
                 </div>
             </div>
             <div className="Section4">
@@ -213,6 +213,12 @@ const Mainpage: React.FC<MainProps> = () => {
                 <div className="Add4Section">
                     <button>+ 더보기</button>
                 </div>
+            </div>
+            <ScrollToTop />
+            <div className="Section5">
+                안녕하세요, WildFix 개발진입니다.<br />
+                저희 사이트는 포트폴리오 사용 용도로 실제 제품 구매가 이루어지지 않는 점 양해 부탁드립니다.<br />
+                개별 연락은 하단 이메일로 부탁드리며, 저희 사이트에 방문해 주셔서 감사합니다.
             </div>
         </div>
     );

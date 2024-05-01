@@ -95,6 +95,7 @@
         gap: 46px;
 
         .Se3Name {
+            font-weight: bold;
             font-size: 40px;
             margin-left: 16px;
             color: #103349;
@@ -137,6 +138,7 @@
             font-size: 36px;
             color: #103349;
             margin-bottom: 30px;
+            font-weight: bold;
         }
 
         .Explan3-1 {
@@ -197,6 +199,14 @@
                 border-radius: 5px;
             }
         }
+    }
+
+    .Section5{
+        text-align: center;
+        padding-top: 57px;
+        padding-bottom: 61px;
+        background-color: #fff;
+        font-size: 15px;
     }
 }
 

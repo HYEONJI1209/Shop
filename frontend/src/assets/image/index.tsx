@@ -15,6 +15,7 @@ export { default as SlideLeftArrow } from "./MainPage/SlideLeftArrow.svg";
 export { default as SlideRightArrow } from "./MainPage/SlideRightArrow.svg";
 export { default as MainTestImg1 } from "./MainPage/MainTestImg1.svg";
 export { default as MainTestImg2 } from "./MainPage/MainTestImg2.svg";
+export { default as ToTopIcon } from "./MainPage/ToTopIcon.svg";
 
 //login
 export { default as CheckBoxBlank } from "./login/CheckBoxBlank.svg";
