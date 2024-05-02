@@ -7,15 +7,15 @@ import {
     SearchHoverIcon,
     SearchIcon
 } from "../../assets/image/index";
-import {HeaderServices} from "../../services/Header/HeaderServices";
 
 interface HeaderProps {
     setSearchClick: React.Dispatch<React.SetStateAction<boolean>>;
     setMypageClick: React.Dispatch<React.SetStateAction<boolean>>;
+    setHeaderOptionClick: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Header: React.FC<HeaderProps> = ({ setSearchClick, setMypageClick }) => {
-    const [hoveredIcon, setHoveredIcon] = useState(null);
+const Header: React.FC<HeaderProps> = ({ setSearchClick, setMypageClick, setHeaderOptionClick }) => {
+    const [hoveredIcon, setHoveredIcon] = useState<number | null>(null);
 
     const icons = [
         { normal: SearchIcon, hover: SearchHoverIcon },
@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ setSearchClick, setMypageClick }) => {
         { normal: MyPageIcon, hover: MyPageHoverIcon }
     ];
 
-    const handleIconHover = (index: any) => {
+    const handleIconHover = (index: number) => {
         setHoveredIcon(index);
     };
 
@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ setSearchClick, setMypageClick }) => {
 
     const handleIconClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, index: number) => {
         event.stopPropagation();
-    
+
         if (index === 0) {
             setSearchClick(true);
         } else if (index === 2) {
@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({ setSearchClick, setMypageClick }) => {
     };
 
     const handleMenuClick = (menuItem: string) => {
-        HeaderServices({ menuOption: menuItem });
+        setHeaderOptionClick(menuItem);
     };
 
     return (
@@ -68,12 +68,14 @@ const Header: React.FC<HeaderProps> = ({ setSearchClick, setMypageClick }) => {
                         <img
                             className="HeaderImage"
                             src={hoveredIcon === index ? icon.hover : icon.normal}
+                            alt={index === 0 ? "Search Icon" : index === 1 ? "MyBag Icon" : "MyPage Icon"}
                         />
                         {index === 2 && <span style={{fontSize:'11px', color:'#fff'}}>10,000point</span>}
                     </div>
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};
+
 export default Header;
