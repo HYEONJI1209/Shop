@@ -5,17 +5,19 @@ import { Header, MainRoute, SearchModal, Footer } from "./components/index";
 function App() {
   const [searchClick, setSearchClick] = useState(false);
   const [mypageClick, setMypageClick] = useState(false);
-  
+  const [HeaderOptionClick, setHeaderOptionClick] = useState("")
+
   return (
     <div className={`App ${searchClick ? 'overlay' : ''}`}>
       <Header
         setSearchClick={setSearchClick}
         setMypageClick={setMypageClick}
+        setHeaderOptionClick={setHeaderOptionClick}
       />
-      <MainRoute />
+      <MainRoute HeaderOptionClick={HeaderOptionClick} />
       <Footer />
 
-      {searchClick? <SearchModal searchClick={searchClick} setSearchClick={setSearchClick} /> : <></>}
+      {searchClick ? <SearchModal searchClick={searchClick} setSearchClick={setSearchClick} /> : <></>}
     </div>
   );
 }

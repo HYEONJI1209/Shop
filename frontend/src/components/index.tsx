@@ -16,3 +16,6 @@ export { default as Register } from "./Login/Register";
 export { default as Login } from "./Login/Login";
 export { default as Resetpassword } from "./Login/Resetpassword";
 export { default as FinResetpw } from "./Login/FinResetpw";
+
+//detail
+export { default as ProductDetail } from "./ProductDetail/ProductDetail";
