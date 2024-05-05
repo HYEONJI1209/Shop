@@ -1,20 +1,31 @@
 package com.shop.wildfix.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.shop.wildfix.model.Product;
 import com.shop.wildfix.service.ProductService;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class ProductController {
     @Autowired
     private ProductService productService;
+
+    // 헤더 옵션에 따른 제품 목록을 프론트엔드로 반환
+    @GetMapping("/api/productDetail")
+    public ResponseEntity<List<Product>> getProductsByHeaderOption(@RequestParam String headerOptionClick) {
+        List<Product> products = productService.getProductsByHeaderOption(headerOptionClick);
+        return ResponseEntity.ok(products);
+    }
 
     @PostMapping("/api/postregistration")
     public Product createProduct(
