@@ -22,13 +22,13 @@ const ProductDetail: React.FC<DetailProps> = ({ HeaderOptionClick }) => {
 
     switch (HeaderOptionClick) {
         case "TOP":
-            options = ["Small", "Medium", "Large"];
+            options = ["Knit", "T-Shirts", "Shirts"];
             break;
         case "BOTTOM":
-            options = ["가", "나", "다"];
+            options = ["Denimopaint", "Trousers", "Short pants"];
             break;
         case "OUTER":
-            options = ["A", "B", "C"];
+            options = ["Jacket", "Coat", "Padding"];
             break;
         default:
             break;
