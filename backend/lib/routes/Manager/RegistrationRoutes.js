@@ -4,7 +4,7 @@ module.exports = app => {
     const express = require('express');
     const router = express.Router();
 
-    router.post("/postregistration", controller.RegistrarionController);
+    router.post("/postregistration", controller.RegisterController);
 
     app.use('/api', router);
 }

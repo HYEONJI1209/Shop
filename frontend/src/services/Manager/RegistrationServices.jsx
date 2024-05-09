@@ -5,6 +5,6 @@ const PostRegistration = (formData) => {
         headers: {
             "Content-Type": "multipart/form-data"
         }
-    });
+    })
 };
 export { PostRegistration };

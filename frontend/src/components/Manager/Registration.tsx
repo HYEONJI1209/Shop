@@ -47,7 +47,7 @@ const Registration = () => {
             formData.append("productName", productName);
             formData.append("position", position);
             formData.append("option", selectedOption);
-
+            
             try {
                 const response = await PostRegistration(formData);
                 console.log("Response from backend:", response.data);

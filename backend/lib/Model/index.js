@@ -23,6 +23,6 @@ database.Node_db = Node_db;
 
 //함수 호출 및 반환
 database.SignUpDB = SignUpDB(Node_db, Sequelize);
-database.RegisDB = SignUpDB(Node_db, Sequelize);
+database.RegisDB = RegisDB(Node_db, Sequelize);
 
 module.exports = database;
