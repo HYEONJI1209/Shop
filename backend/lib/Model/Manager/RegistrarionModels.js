@@ -4,7 +4,31 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false,
         },
+        fileurl2: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        fileurl3: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        fileurl4: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
         fileName: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        fileName2: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        fileName3: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        fileName4: {
             type: Sequelize.STRING,
             allowNull: false,
         },
@@ -16,10 +40,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: false,
         },
-        explanation: {
-            type: Sequelize.STRING,
-            allowNull: false,
-        },
+        // explanation: {
+        //     type: Sequelize.TEXT,
+        //     allowNull: true,
+        // },
         productName: {
             type: Sequelize.STRING,
             allowNull: false,

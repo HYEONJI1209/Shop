@@ -14,7 +14,10 @@ function App() {
         setMypageClick={setMypageClick}
         setHeaderOptionClick={setHeaderOptionClick}
       />
-      <MainRoute HeaderOptionClick={HeaderOptionClick} />
+      <MainRoute
+      HeaderOptionClick={HeaderOptionClick}
+      setHeaderOptionClick={setHeaderOptionClick}
+      />
       <Footer />
 
       {searchClick ? <SearchModal searchClick={searchClick} setSearchClick={setSearchClick} /> : <></>}

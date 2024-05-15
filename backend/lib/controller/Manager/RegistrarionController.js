@@ -1,8 +1,7 @@
 const path = require("path");
-const fs = require("fs");
+const multer = require("multer");
 const database = require("../../Model");
 const RegisDB = database.RegisDB;
-const multer = require("multer");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -14,37 +13,59 @@ const storage = multer.diskStorage({
         cb(null, originalFileName);
     },
 });
-  
-const upload = multer({ storage: storage }).single('file'); // single('file')을 사용하여 하나의 파일을 업로드합니다.
+
+const upload = multer({ storage: storage }).fields([
+    { name: 'file', maxCount: 1 },
+    { name: 'file2', maxCount: 1 },
+    { name: 'file3', maxCount: 1 },
+    { name: 'file4', maxCount: 1 },
+]);
 
 const RegisterController = async (req, res) => {
     try {
-        upload(req, res, async function(err) { // multer를 미들웨어로 사용하여 파일을 업로드합니다.
+        upload(req, res, async function (err) { // multer를 미들웨어로 사용하여 파일을 업로드합니다.
             if (err) {
                 return res.status(500).json({ message: "파일 업로드에 실패했습니다." });
             }
 
-            if (!req.file) {
+            const {
+                size,
+                fileName,
+                fileName2,
+                fileName3,
+                fileName4,
+                price,
+                // explanation,
+                productName,
+                position,
+                option
+            } = req.body;
+
+            if (!req.files || !req.files['file'] || !req.files['file2'] || !req.files['file3'] || !req.files['file4']) {
                 return res.status(400).json({ message: "파일이 전송되지 않았습니다." });
             }
 
-            const { size,fileName, price, explanation, productName, position, option } = req.body;
-
             const generateImgChartURL = (filename) => {
-    return `/uploads/${filename}`;
-  };
-
+                return `/uploads/${filename}`;
+            };
 
             const createChartImageURL = generateImgChartURL(fileName);
-            // 업로드된 파일의 경로
-            const filePath = req.file.path;
+            const createChartImageURL2 = generateImgChartURL(fileName2);
+            const createChartImageURL3 = generateImgChartURL(fileName3);
+            const createChartImageURL4 = generateImgChartURL(fileName4);
 
             const RegisData = {
                 fileurl: createChartImageURL,
-                fileName:fileName,
+                fileurl2: createChartImageURL2,
+                fileurl3: createChartImageURL3,
+                fileurl4: createChartImageURL4,
+                fileName: fileName,
+                fileName2: fileName2,
+                fileName3: fileName3,
+                fileName4: fileName4,
                 size: size,
                 price: price,
-                explanation: explanation,
+                // explanation: explanation,
                 productName: productName,
                 position: position,
                 option: option
