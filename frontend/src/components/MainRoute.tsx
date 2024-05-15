@@ -12,9 +12,10 @@ import { Routes, Route } from "react-router-dom";
 
 interface RouteProps {
     HeaderOptionClick: string;
+    setHeaderOptionClick: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const MainRoute: React.FC<RouteProps> = ({ HeaderOptionClick }) => {
+const MainRoute: React.FC<RouteProps> = ({ HeaderOptionClick, setHeaderOptionClick }) => {
     return (
         <div>
             <Routes>
@@ -24,7 +25,7 @@ const MainRoute: React.FC<RouteProps> = ({ HeaderOptionClick }) => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/resetpass" element={<Resetpassword />} />
                 <Route path="/finresetpw" element={<FinResetpw />} />
-                <Route path="/productDetail" element={<ProductDetail HeaderOptionClick={HeaderOptionClick} />} />
+                <Route path="/productDetail" element={<ProductDetail setHeaderOptionClick={setHeaderOptionClick} HeaderOptionClick={HeaderOptionClick} />} />
             </Routes>
         </div>
     );

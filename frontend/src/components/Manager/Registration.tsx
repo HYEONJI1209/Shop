@@ -3,16 +3,26 @@ import { PostRegistration } from "../../services/Manager/RegistrationServices";
 
 const Registration = () => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [selectedFile2, setSelectedFile2] = useState<File | null>(null);
+    const [selectedFile3, setSelectedFile3] = useState<File | null>(null);
+    const [selectedFile4, setSelectedFile4] = useState<File | null>(null);
     const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
     const [price, setPrice] = useState("");
-    const [explanation, setExplanation] = useState("");
-    const [productName, setProductName] = useState("");
     const [position, setPosition] = useState<string>('');
     const [options, setOptions] = useState<string[]>([]);
     const [selectedOption, setSelectedOption] = useState<string>('');
 
     const handleFileChange = (event: any) => {
         setSelectedFile(event.target.files[0]);
+    };
+    const handleFile2Change = (event: any) => {
+        setSelectedFile2(event.target.files[0]);
+    };
+    const handleFile3Change = (event: any) => {
+        setSelectedFile3(event.target.files[0]);
+    };
+    const handleFile4Change = (event: any) => {
+        setSelectedFile4(event.target.files[0]);
     };
 
     const handleSizeChange = (event: any) => {
@@ -28,24 +38,21 @@ const Registration = () => {
         setPrice(event.target.value);
     };
 
-    const handleExplanationChange = (event: any) => {
-        setExplanation(event.target.value);
-    };
-
-    const handleProductNameChange = (event: any) => {
-        setProductName(event.target.value);
-    };
-
     const handleSubmit = async (event: any) => {
         event.preventDefault();
-        if (selectedFile && selectedSizes.length > 0 && price && explanation && productName && position && selectedOption) {
+        if (selectedFile && selectedFile2 && selectedFile3 && selectedFile4 && selectedSizes.length > 0 && price && position && selectedOption) {
             const formData = new FormData();
             formData.append("file", selectedFile);
+            formData.append("file2", selectedFile2);
+            formData.append("file3", selectedFile3);
+            formData.append("file4", selectedFile4);
             formData.append("fileName", selectedFile.name);
+            formData.append("fileName2", selectedFile2.name);
+            formData.append("fileName3", selectedFile3.name);
+            formData.append("fileName4", selectedFile4.name);
             formData.append("size", selectedSizes.join(","));
             formData.append("price", price);
-            formData.append("explanation", explanation);
-            formData.append("productName", productName);
+            formData.append("productName", selectedFile.name.slice(0, -4));
             formData.append("position", position);
             formData.append("option", selectedOption);
             
@@ -87,12 +94,39 @@ const Registration = () => {
         <div>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="fileInput">Upload Image:</label>
+                    <label htmlFor="fileInput">Upload Image1:</label>
                     <input
                         type="file"
                         id="fileInput"
                         accept="image/*"
                         onChange={handleFileChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="fileInput2">Upload Image2:</label>
+                    <input
+                        type="file"
+                        id="fileInput2"
+                        accept="image/*"
+                        onChange={handleFile2Change}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="fileInput3">Upload Image3:</label>
+                    <input
+                        type="file"
+                        id="fileInput3"
+                        accept="image/*"
+                        onChange={handleFile3Change}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="fileInput4">Upload Image4:</label>
+                    <input
+                        type="file"
+                        id="fileInput4"
+                        accept="image/*"
+                        onChange={handleFile4Change}
                     />
                 </div>
                 <div>
@@ -104,7 +138,7 @@ const Registration = () => {
                         checked={selectedSizes.includes("small")}
                         onChange={handleSizeChange}
                     />
-                    <label htmlFor="small">Small</label><br />
+                    <label htmlFor="small">S</label><br />
                     <input
                         type="checkbox"
                         id="medium"
@@ -112,7 +146,7 @@ const Registration = () => {
                         checked={selectedSizes.includes("medium")}
                         onChange={handleSizeChange}
                     />
-                    <label htmlFor="medium">Medium</label><br />
+                    <label htmlFor="medium">M</label><br />
                     <input
                         type="checkbox"
                         id="large"
@@ -120,7 +154,31 @@ const Registration = () => {
                         checked={selectedSizes.includes("large")}
                         onChange={handleSizeChange}
                     />
-                    <label htmlFor="large">Large</label><br />
+                    <label htmlFor="large">L</label><br />
+                    <input
+                        type="checkbox"
+                        id="xlarge"
+                        value="xlarge"
+                        checked={selectedSizes.includes("xlarge")}
+                        onChange={handleSizeChange}
+                    />
+                    <label htmlFor="xlarge">XL</label><br />
+                    <input
+                        type="checkbox"
+                        id="2xlarge"
+                        value="2xlarge"
+                        checked={selectedSizes.includes("2xlarge")}
+                        onChange={handleSizeChange}
+                    />
+                    <label htmlFor="2xlarge">2XL</label><br />
+                    <input
+                        type="checkbox"
+                        id="3xlarge"
+                        value="3xlarge"
+                        checked={selectedSizes.includes("3xlarge")}
+                        onChange={handleSizeChange}
+                    />
+                    <label htmlFor="3xlarge">3XL</label><br />
                 </div>
                 <div>
                     <label htmlFor="price">가격: </label>
@@ -132,24 +190,8 @@ const Registration = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="explanation">상세 설명: </label>
-                    <input
-                        type="text"
-                        id="explanation"
-                        value={explanation}
-                        onChange={handleExplanationChange}
-                    />
+                <label htmlFor="productName">제품 명: {selectedFile ? selectedFile.name.slice(0, -4) : ''}</label>
                 </div>
-                <div>
-                    <label htmlFor="productName">제품 명: </label>
-                    <input
-                        type="text"
-                        id="productName"
-                        value={productName}
-                        onChange={handleProductNameChange}
-                    />
-                </div>
-
                 <div>
                     <select value={position} onChange={handlePositionChange}>
                         <option value="">위치를 선택하세요</option>

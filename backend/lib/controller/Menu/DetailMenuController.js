@@ -3,13 +3,16 @@ const { RegisDB } = require("../../Model");
 const MenuController = async (req, res) => {
     try {
         const { selectedOptions, HeaderOptionClick } = req.body;
+        let whereClause = { position: HeaderOptionClick };
 
-        // 데이터베이스에서 해당 옵션을 가진 아이템을 조회
+        // selectedOptions 값이 존재하거나 빈 배열이 아닌 경우 where 절에 추가
+        if (selectedOptions && selectedOptions.length > 0) {
+            whereClause.option = selectedOptions;
+        }
+
+        // 데이터베이스에서 해당 position 및 선택된 옵션을 가진 아이템을 조회
         const items = await RegisDB.findAll({
-            where: {
-                position: HeaderOptionClick,
-                option: selectedOptions
-            }
+            where: whereClause
         });
 
         // 프론트엔드로 결과 반환
