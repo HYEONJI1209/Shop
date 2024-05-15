@@ -43,6 +43,7 @@ app.use(bodyParser.json());
 // 라우터 파일을 가져옵니다.
 require('./lib/routes/login/SignUpRoutes')(app);
 require('./lib/routes/Manager/RegistrationRoutes')(app);
+require('./lib/routes/Menu/DetailMenuRoutes')(app);
 
 // 404 에러 핸들링
 app.use(function(req, res, next) {

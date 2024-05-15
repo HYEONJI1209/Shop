@@ -5,8 +5,17 @@ interface DetailProps {
     HeaderOptionClick: string;
 }
 
+interface Product {
+    productName: string;
+    position: string;
+    fileName: string;
+    option: string;
+    price: number;
+}
+
 const ProductDetail: React.FC<DetailProps> = ({ HeaderOptionClick }) => {
     const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
 
     // HeaderOptionClick이 변경될 때마다 실행되는 useEffect
     useEffect(() => {
@@ -42,10 +51,11 @@ const ProductDetail: React.FC<DetailProps> = ({ HeaderOptionClick }) => {
     };
 
     const sendDataToBackend = (data: string[]) => {
-        // 체크박스가 클릭될 때마다 백엔드로 데이터 전송
         DetailMenuServices({ selectedOptions: data, HeaderOptionClick })
             .then((response) => {
-                // 성공적으로 서버에 데이터를 보냈을 때의 처리
+                if (response.data.length > 0) {
+                    setProducts(response.data);
+                }
             })
             .catch((error) => {
                 // 오류 발생 시 처리
@@ -53,19 +63,40 @@ const ProductDetail: React.FC<DetailProps> = ({ HeaderOptionClick }) => {
     };
 
     return (
-        <div>
-            {options.map((option, index) => (
-                <div key={index}>
-                    <input
-                        type="checkbox"
-                        id={`option-${index}`}
-                        value={option}
-                        checked={selectedOptions.includes(option)}
-                        onChange={() => handleCheckboxChange(option)}
-                    />
-                    <label htmlFor={`option-${index}`}>{option}</label><br />
+        <div className="DetailProduct">
+            <div className="DetailSelectOption">
+                {options.map((option, index) => (
+                    <div key={index}>
+                        <input
+                            type="checkbox"
+                            id={`option-${index}`}
+                            value={option}
+                            checked={selectedOptions.includes(option)}
+                            onChange={() => handleCheckboxChange(option)}
+                        />
+                        <label htmlFor={`option-${index}`}>{option}</label><br />
+                    </div>
+                ))}
+            </div>
+            <div className="ProductMain">
+                {products.slice(0, 1).map((product, index) => (
+                    <div>
+                        Home / {product.position} / {product.option}
+                    </div>
+                ))}
+                <div className="productList">
+                    {products.map((product, index) => (
+                        <div className="image-container" key={`product-${index}`} >
+                            <img className="Image" src={`http://localhost:3001/uploads/${product.fileName}`} alt={product.fileName} />
+                            <div className="image-text">
+                                <div className="ImageMenuText">{product.position}&nbsp; &gt; &nbsp;{product.option}</div>
+                                <div className="ImageText">{product.productName}</div>
+                                <div className="ImagePointText">{product.price}&nbsp;point</div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-            ))}
+            </div>
         </div>
     );
 };
