@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { PostRegistration } from "../../services/Manager/RegistrationServices";
 
 const Registration = () => {
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
     const [price, setPrice] = useState("");
     const [explanation, setExplanation] = useState("");
@@ -41,6 +41,7 @@ const Registration = () => {
         if (selectedFile && selectedSizes.length > 0 && price && explanation && productName && position && selectedOption) {
             const formData = new FormData();
             formData.append("file", selectedFile);
+            formData.append("fileName", selectedFile.name);
             formData.append("size", selectedSizes.join(","));
             formData.append("price", price);
             formData.append("explanation", explanation);

@@ -27,14 +27,21 @@ const RegisterController = async (req, res) => {
             if (!req.file) {
                 return res.status(400).json({ message: "파일이 전송되지 않았습니다." });
             }
-            
-            const { size, price, explanation, productName, position, option } = req.body;
 
+            const { size,fileName, price, explanation, productName, position, option } = req.body;
+
+            const generateImgChartURL = (filename) => {
+    return `/uploads/${filename}`;
+  };
+
+
+            const createChartImageURL = generateImgChartURL(fileName);
             // 업로드된 파일의 경로
             const filePath = req.file.path;
 
             const RegisData = {
-                fileurl: filePath, // 'fileurl' 필드로 수정
+                fileurl: createChartImageURL,
+                fileName:fileName,
                 size: size,
                 price: price,
                 explanation: explanation,

@@ -4,6 +4,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false,
         },
+        fileName: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
         size: {
             type: Sequelize.STRING,
             allowNull: false,

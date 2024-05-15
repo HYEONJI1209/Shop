@@ -1,7 +1,7 @@
 import api from "../../api/auth";
 
-const DetailMenuServices = (headerData) => {
-    return api.post("/detailmenuoption", headerData);
+const DetailMenuServices = (selectedOptions,HeaderOptionClick) => {
+    return api.post("/detailmenuoption", selectedOptions,HeaderOptionClick);
 };
 
 
