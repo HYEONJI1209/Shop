@@ -134,7 +134,7 @@ const Registration = () => {
                     <input
                         type="checkbox"
                         id="small"
-                        value="small"
+                        value="S"
                         checked={selectedSizes.includes("small")}
                         onChange={handleSizeChange}
                     />
@@ -142,7 +142,7 @@ const Registration = () => {
                     <input
                         type="checkbox"
                         id="medium"
-                        value="medium"
+                        value="M"
                         checked={selectedSizes.includes("medium")}
                         onChange={handleSizeChange}
                     />
@@ -150,7 +150,7 @@ const Registration = () => {
                     <input
                         type="checkbox"
                         id="large"
-                        value="large"
+                        value="L"
                         checked={selectedSizes.includes("large")}
                         onChange={handleSizeChange}
                     />
@@ -158,7 +158,7 @@ const Registration = () => {
                     <input
                         type="checkbox"
                         id="xlarge"
-                        value="xlarge"
+                        value="XL"
                         checked={selectedSizes.includes("xlarge")}
                         onChange={handleSizeChange}
                     />
@@ -166,7 +166,7 @@ const Registration = () => {
                     <input
                         type="checkbox"
                         id="2xlarge"
-                        value="2xlarge"
+                        value="2XL"
                         checked={selectedSizes.includes("2xlarge")}
                         onChange={handleSizeChange}
                     />
@@ -174,7 +174,7 @@ const Registration = () => {
                     <input
                         type="checkbox"
                         id="3xlarge"
-                        value="3xlarge"
+                        value="3XL"
                         checked={selectedSizes.includes("3xlarge")}
                         onChange={handleSizeChange}
                     />

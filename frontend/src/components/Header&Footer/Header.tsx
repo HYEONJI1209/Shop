@@ -7,6 +7,7 @@ import {
     SearchHoverIcon,
     SearchIcon
 } from "../../assets/image/index";
+import {Link} from "react-router-dom";
 
 interface HeaderProps {
     setSearchClick: React.Dispatch<React.SetStateAction<boolean>>;
@@ -51,9 +52,9 @@ const Header: React.FC<HeaderProps> = ({ setSearchClick, setMypageClick, setHead
                 로고
             </div>
             <div className="Menu">
-                <span onClick={() => handleMenuClick("TOP")}>TOP</span>
-                <span onClick={() => handleMenuClick("BOTTOM")}>BOTTOM</span>
-                <span onClick={() => handleMenuClick("OUTER")}>OUTER</span>
+                <Link to="/productDetail" className="span" onClick={() => handleMenuClick("TOP")}>TOP</Link>
+                <Link to="/productDetail" className="span" onClick={() => handleMenuClick("BOTTOM")}>BOTTOM</Link>
+                <Link to="/productDetail" className="span" onClick={() => handleMenuClick("OUTER")}>OUTER</Link>
             </div>
             <div className="MyBox">
                 {icons.map((icon, index) => (

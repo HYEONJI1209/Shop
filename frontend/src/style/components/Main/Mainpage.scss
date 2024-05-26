@@ -201,7 +201,7 @@
         }
     }
 
-    .Section5{
+    .Section5 {
         text-align: center;
         padding-top: 57px;
         padding-bottom: 61px;
@@ -228,6 +228,7 @@
 
 .image-container {
     position: relative;
+    cursor: pointer;
 
     .image-text {
         position: absolute;
@@ -299,27 +300,28 @@
     }
 }
 
-@include laptop{
+@include laptop {
 
-    .MainPage{
-    .Section2 {
-        padding: 62px 80px;
-.TwoRight{
-    width: 50%;
+    .MainPage {
+        .Section2 {
+            padding: 62px 80px;
 
-    .GoodsName{
-        font-size: 30px;
-    }
-}
-    }
+            .TwoRight {
+                width: 50%;
 
-    .Section3 {
-        padding: 45px 40px 50px 40px;
+                .GoodsName {
+                    font-size: 30px;
+                }
+            }
+        }
 
-        .Section3_image {
-            gap: 20px;
-            justify-content: center;
+        .Section3 {
+            padding: 45px 40px 50px 40px;
+
+            .Section3_image {
+                gap: 20px;
+                justify-content: center;
+            }
         }
     }
-}
 }

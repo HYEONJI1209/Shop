@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DetailMenuServices } from "../../services/Detail/MenuDetailServices";
+import { useNavigate } from "react-router-dom";
 
 interface DetailProps {
     setHeaderOptionClick: React.Dispatch<React.SetStateAction<string>>;
@@ -19,6 +20,9 @@ const ProductDetail: React.FC<DetailProps> = ({ HeaderOptionClick, setHeaderOpti
     const [products, setProducts] = useState<Product[]>([]);
     const [optionClick, setOptionClick] = useState(false);
     const [sortOption, setSortOption] = useState<string>('정렬기준');
+    const [clickedItem, setClickedItem] = useState<string>('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         // 컴포넌트가 마운트될 때 로컬 스토리지에서 저장된 값 로드
@@ -35,6 +39,11 @@ const ProductDetail: React.FC<DetailProps> = ({ HeaderOptionClick, setHeaderOpti
         localStorage.setItem('lastClickedHeaderOption', HeaderOptionClick);
         sendDataToBackend(selectedOptions);
     }, [HeaderOptionClick]);
+
+    useEffect(() => {
+        // 변경된 clickedItem 값을 로컬 스토리지에 저장
+        localStorage.setItem('clickedProduct', clickedItem)
+    }, [clickedItem]);
 
     // 선택된 옵션이 변경될 때마다 실행되는 useEffect
     useEffect(() => {
@@ -109,6 +118,12 @@ const ProductDetail: React.FC<DetailProps> = ({ HeaderOptionClick, setHeaderOpti
         setSortOption(option);
     };
 
+    const handleProductClick = (product: Product) => {
+        setClickedItem(product.productName);
+        localStorage.setItem('clickedProduct', product.productName);
+        navigate('/eachproduct');
+    };
+
     return (
         <div className="DetailProduct">
             <div className="DetailSelectOption">
@@ -152,7 +167,7 @@ const ProductDetail: React.FC<DetailProps> = ({ HeaderOptionClick, setHeaderOpti
                 </div>
                 <div className="productList">
                     {products.map((product, index) => (
-                        <div className="image-container" key={`product-${index}`} >
+                        <div className="image-container" key={`product-${index}`} onClick={() => handleProductClick(product)}>
                             <img className="Image" src={`http://localhost:3001/uploads/${product.fileName}`} alt={product.fileName} />
                             <div className="image-text">
                                 <div className="ImageMenuText">{product.position}&nbsp; &gt; &nbsp;{product.option}</div>
