@@ -4,5 +4,12 @@ const DetailMenuServices = (selectedOptions,HeaderOptionClick) => {
     return api.post("/detailmenuoption", selectedOptions,HeaderOptionClick);
 };
 
+const EachServices = (clickedItem) => {
+    return api.post("/eachItems",clickedItem)
+}
 
-export { DetailMenuServices };
+const SimilarServices = (cliPosition) => {
+    return api.post("/similarItems",cliPosition)
+}
+
+export { DetailMenuServices, EachServices, SimilarServices };

@@ -7,6 +7,7 @@ import {
     Resetpassword,
     FinResetpw,
     ProductDetail,
+    EachProduct,
 } from "./index";
 import { Routes, Route } from "react-router-dom";
 
@@ -26,6 +27,7 @@ const MainRoute: React.FC<RouteProps> = ({ HeaderOptionClick, setHeaderOptionCli
                 <Route path="/resetpass" element={<Resetpassword />} />
                 <Route path="/finresetpw" element={<FinResetpw />} />
                 <Route path="/productDetail" element={<ProductDetail setHeaderOptionClick={setHeaderOptionClick} HeaderOptionClick={HeaderOptionClick} />} />
+                <Route path="/eachproduct" element={<EachProduct />} />
             </Routes>
         </div>
     );

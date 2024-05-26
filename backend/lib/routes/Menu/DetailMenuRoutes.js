@@ -7,6 +7,8 @@ module.exports = app => {
     const router = express.Router();
 
     router.post("/detailmenuoption", controller.MenuController);
+    router.post("/eachItems", controller.EachItemController);
+    router.post("/similarItems", controller.SimilarItemController);
 
     app.use(
         "/uploads",

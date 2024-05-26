@@ -19,3 +19,4 @@ export { default as FinResetpw } from "./Login/FinResetpw";
 
 //detail
 export { default as ProductDetail } from "./ProductDetail/ProductDetail";
+export { default as EachProduct } from "./ProductDetail/EachProduct";

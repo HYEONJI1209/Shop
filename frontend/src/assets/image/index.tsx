@@ -24,3 +24,8 @@ export { default as closeEye } from "./login/closeEye.svg";
 export { default as openEye } from "./login/openEye.svg";
 export { default as LoginIcon } from "./login/LoginIcon.svg";
 export { default as ResetpwIcon } from "./login/ResetpwIcon.svg";
+
+export { default as FullStar } from "./MainPage/FullStar.svg";
+export { default as blankStar } from "./MainPage/blankStar.svg";
+export { default as EachBag } from "./MainPage/EachBag.svg";
+export { default as Love } from "./MainPage/Love.svg";
